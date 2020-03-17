@@ -1,9 +1,13 @@
 package org.acme.quarkus.sample;
 
 import io.smallrye.reactive.messaging.annotations.Broadcast;
+import org.eclipse.microprofile.reactive.messaging.Acknowledgment;
 import org.eclipse.microprofile.reactive.messaging.Incoming;
 import org.eclipse.microprofile.reactive.messaging.Outgoing;
 import io.vertx.core.json.JsonObject;
+
+import java.util.Date;
+
 import javax.enterprise.context.ApplicationScoped;
 
 /**
@@ -29,12 +33,16 @@ public class TransactionConverter {
 
     @Incoming("transactions")
     @Outgoing("my-data-stream")
+    @Acknowledgment(Acknowledgment.Strategy.PRE_PROCESSING)
     @Broadcast
     public String process(String incomingTx) {
         JsonObject txJson = new JsonObject(incomingTx);
 
-        double txAmount = txJson.getDouble("amount");
+        double txAmount = Double.parseDouble(txJson.getString("amount"));
         double txEuroAmt = txAmount * EUR_CONVERSION_RATE;
+        Date date = new Date();
+
+        System.out.println("[" + date.toString() + "] Incoming TX value was " + txAmount + " USD. This equates to " + txEuroAmt + " EUR.");
 
         txJson.put("euros", txEuroAmt);
 
