@@ -32,7 +32,17 @@
         transform: rotate(360deg);
       }
     }
-  </style>
+
+    #tx-table {
+      max-height: 80vh;
+      overflow-y: scroll;
+    }
+
+    .navbar-brand h3 {
+      letter-spacing: 5px;
+      text-transform: uppercase;
+    }
+</style>
 </head>
 
 <body>
@@ -100,23 +110,25 @@
         <button onclick="window.location.reload()" class="btn btn-primary btn-lg"> Refresh </button>
       </div>
     </div>
-    <table class="table table-striped table-bordered table-hover" id="tx-table">
-      <thead>
-        <tr>
-          <th><label class="sr-only" for="selectAll">Select all rows</label><input type="checkbox" id="selectAll"
-              name="selectAll"></th>
-          <th>USD Amount</th>
-          <th>EUR Amount</th>
-          <th>Zip</th>
-          <th>Lastname</th>
-          <th>UUID</th>
-          <th colspan="2">Actions</th>
-        </tr>
-      </thead>
-      <tbody id="tx-tbody">
-        <!-- Data will be injected here -->
-      </tbody>
-    </table>
+    <div id="tx-table">
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+          <tr>
+            <th><label class="sr-only" for="selectAll">Select all rows</label><input type="checkbox" id="selectAll"
+                name="selectAll"></th>
+            <th>USD Amount</th>
+            <th>EUR Amount</th>
+            <th>Zip</th>
+            <th>Lastname</th>
+            <th>UUID</th>
+            <th colspan="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tx-tbody">
+          <!-- Data will be injected here -->
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
