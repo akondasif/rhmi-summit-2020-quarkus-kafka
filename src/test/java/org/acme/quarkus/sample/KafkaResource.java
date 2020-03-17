@@ -16,6 +16,7 @@ public class KafkaResource implements QuarkusTestResourceLifecycleManager {
         KafkaContainer KAFKA = new KafkaContainer();
         KAFKA.start();
         System.setProperty("kafka.bootstrap.servers", KAFKA.getBootstrapServers());
+        KAFKA.close();
         return Collections.emptyMap();
     }
 
