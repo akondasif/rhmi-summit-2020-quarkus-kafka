@@ -3,11 +3,24 @@ Quarkus Kafka Quickstart
 
 This project illustrates how you can interact with Apache Kafka using MicroProfile Reactive Messaging.
 
-## Kafka cluster
+## Kafka Cluster
 
 First you need a Kafka cluster. You can follow the instructions from the [Apache Kafka web site](https://kafka.apache.org/quickstart) or run `docker-compose up` if you have docker installed on your machine.
 
-## Start the application
+Another application should write JSON transaction objects in the following format to a `transactions` topic:
+
+```
+{
+    "id": "0d64e882-a59b-43d7-a468-89c122fd37ee",
+    "givenname": "Jane",
+    "surname": "Doe",
+    "zip": "47420-7769",
+    "amount": "378.00",
+    "timestamp": "2020-03-06T07:33:33.796Z"
+}
+```
+
+## Start this Quarkus Application
 
 The application can be started using:
 
@@ -15,7 +28,7 @@ The application can be started using:
 mvn quarkus:dev
 ```
 
-Then, open your browser to `http://localhost:8080/index.html`, and you should see a fluctuating price.
+Then, open your browser to `http://localhost:8080/index.html`, and you should see transactions rendered in a table.
 
 ## Anatomy
 
@@ -28,7 +41,7 @@ The result is sent to an in-memory stream of data
 The interaction with Kafka is managed by MicroProfile Reactive Messaging.
 The configuration is located in the application configuration.
 
-## Running in native
+## Running in Native Mode
 
 You can compile the application into a native binary using:
 
