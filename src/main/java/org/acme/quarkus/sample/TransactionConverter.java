@@ -40,12 +40,9 @@ public class TransactionConverter {
 
         double txAmount = Double.parseDouble(txJson.getString("amount"));
         double txEuroAmt = txAmount * EUR_CONVERSION_RATE;
-        Date date = new Date();
 
-        System.out.println("[" + date.toString() + "] Incoming TX value was " + txAmount + " USD. This equates to " + txEuroAmt + " EUR.");
-
-        txJson.put("euros", txEuroAmt);
-
+        // TODO, add output
+        
         String outTxJson = txJson.encode();
 
         return outTxJson;
