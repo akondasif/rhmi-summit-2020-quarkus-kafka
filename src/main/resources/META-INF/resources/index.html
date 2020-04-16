@@ -183,7 +183,12 @@
       var data = JSON.parse(event.data)
       data.counter = counter
       data.isOdd = (counter % 2) != 0
-      data.euros = data.euros.toFixed(2)
+      
+      try {
+        data.euros = data.euros.toFixed(2)
+      } catch (e) {
+        console.log('error rounding euro amt')
+      }
 
       tbody.append(render(data))
 
